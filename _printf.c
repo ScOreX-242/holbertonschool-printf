@@ -19,9 +19,7 @@ int _printf(const char *format, ...)
 	while (format[i])
 	{
 		if (format[i] != '%')
-		{
 			count += _putchar(format[i]);
-		}
 		else
 		{
 			i++;
@@ -35,6 +33,8 @@ int _printf(const char *format, ...)
 				while (*str)
 					count += _putchar(*str++);
 			}
+			else if (format[i] == 'd' || format[i] == 'i')
+				count += print_number(va_arg(args, int));
 			else if (format[i] == '%')
 				count += _putchar('%');
 			else
