@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * _printf - produces output according to a format.
- * @format: character string containing directives.
+ * _printf - produces output according to a format
+ * @format: character string containing directives
  *
- * Return: the number of characters printed.
+ * Return: number of characters printed
  */
 int _printf(const char *format, ...)
 {
@@ -12,11 +12,11 @@ int _printf(const char *format, ...)
 	int i = 0, count = 0;
 	char *str;
 
-	if (!format || (format[0] == '%' && !format[1]))
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
 	va_start(args, format);
-	while (format && format[i])
+	while (format[i])
 	{
 		if (format[i] != '%')
 		{
@@ -40,7 +40,8 @@ int _printf(const char *format, ...)
 			else
 			{
 				count += _putchar('%');
-				count += _putchar(format[i]);
+				if (format[i])
+					count += _putchar(format[i]);
 			}
 		}
 		i++;
